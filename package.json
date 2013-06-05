@@ -1,0 +1,22 @@
+{
+  "name": "express-lrp",
+  "version": "0.0.0",
+  "description": "express long running process",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/regality/express-lrp.git"
+  },
+  "keywords": [
+    "express"
+  ],
+  "author": "Adam Blackburn",
+  "license": "MIT",
+  "gitHead": "60e3e0052399654f02f931c13638442821efc33d",
+  "dependencies": {
+    "uuid": "~1.4.1"
+  }
+}

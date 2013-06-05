@@ -1,4 +1,4 @@
-(function() {
+(function(window) {
 
   var defaults = {
     host: '',
@@ -55,5 +55,6 @@
 
   window.lrp = start;
   window.lrp.defaults = setDefaults;
+  console.log(window.lrp);
 
-})();
+})(this);

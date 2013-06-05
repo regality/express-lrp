@@ -7,6 +7,7 @@ module.exports = setup;
 
 function setup(app) {
   app.lrp = lrp;
+  return app;
 }
 
 function lrp(name, fn) {
