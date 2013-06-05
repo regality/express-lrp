@@ -2,9 +2,11 @@
 
   var defaults = {
     host: '',
-    dataType: 'json',
-    method: 'GET',
     progress: function(){}
+    ajax: {
+      dataType: 'json',
+      type: 'GET'
+    }
   };
 
   function start(options) {
@@ -12,16 +14,16 @@
     if (!options.name) return options.done(new Error('lrp name is required'));
     merge(options, defaults);
     options.host = options.host || '';
-    $.ajax({
+    var request = {
       url: options.host + '/lrp/start/' + options.name,
-      dataType: options.dataType || 'json',
       data: options.data || {},
-      method: options.method || 'GET',
       success: function(data) {
         options.id = data.id;
         poll(options);
       }
-    });
+    };
+    merge(request, defaults.ajax);
+    $.ajax(request);
   }
 
   function poll(options) {
