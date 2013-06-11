@@ -15,7 +15,7 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
-app.lrp('lrp', function(done, progress) {
+app.lrp('lrp', function(req, done, progress) {
   var count = 0;
   var max = 8;
   var stop = setInterval(function() {

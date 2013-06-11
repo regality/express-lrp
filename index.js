@@ -14,13 +14,13 @@ function lrp(name, fn) {
 
   var app = this;
 
-  function startProcess() {
+  function startProcess(req, res) {
     var id = uuid.v4();
     var emitter = new events.EventEmitter;
     emitter.id = id;
     running[id] = emitter;
 
-    fn(function(err, data) {
+    fn(req, function(err, data) {
       emitter.done = true;
       emitter.err = err;
       emitter.data = data;
@@ -41,6 +41,11 @@ function lrp(name, fn) {
     res.json({ id: lrp.id });
   });
 
+  app.post('/lrp/start/' + name, function(req, res, next) {
+    var lrp = startProcess(req, res);
+    res.json({ id: lrp.id });
+  });
+
   app.get('/lrp/poll/:id', function(req, res, next) {
     var lrp = running[req.params.id];
 
@@ -53,7 +58,7 @@ function lrp(name, fn) {
     if (lrp.done) {
       lrp.emit('cleanup');
       return res.json({
-        error: lrp.err ? err.stack : null,
+        error: lrp.err ? lrp.err.stack : null,
         data: lrp.data
       });
     }
