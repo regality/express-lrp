@@ -2,7 +2,7 @@
 
   var defaults = {
     host: '',
-    progress: function(){}
+    progress: function(){},
     ajax: {
       dataType: 'json',
       type: 'GET'
