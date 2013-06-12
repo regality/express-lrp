@@ -58,7 +58,7 @@ function lrp(name, fn) {
     if (lrp.done) {
       lrp.emit('cleanup');
       return res.json({
-        error: lrp.err ? lrp.err.stack : null,
+        error: lrp.err ? lrp.err.message : undefined,
         data: lrp.data
       });
     }
@@ -73,7 +73,7 @@ function lrp(name, fn) {
 
     function onDone(err, data) {
       res.json({
-        error: err ? err.stack : null,
+        error: err ? err.message : undefined,
         data: data
       });
       done();
